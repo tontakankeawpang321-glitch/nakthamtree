@@ -1,0 +1,7 @@
+{
+  "name": "นักธรรม - ชุมชนธรรมะและคลังหนังสือ",
+  "description": "แอพพลิเคชันนักธรรม ชุมชนธรรมะ พุทธศาสนสุภาษิต คลังหนังสือธรรมะรองรับ PDF/DOCX และ AI ตอบปัญหาธรรมะ รองรับ Android WebView",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

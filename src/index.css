@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #854D0E;
+    --primary-light: #B45309;
+    --accent: #F59E0B;
+    --gold-gradient: linear-gradient(135deg, #B45309 0%, #F59E0B 100%);
+    --ai-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+    --bg-page: #FDFBF7;
+  }
+}
+
+/* Android WebView optimizations */
+html, body {
+  overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  font-family: 'Sarabun', sans-serif;
+  background-color: #FDFBF7;
+}
+
+h1, h2, h3, h4, .font-maitree {
+  font-family: 'Maitree', serif;
+}
+
+/* Background watermark / dot pattern */
+.dhamma-pattern {
+  background-color: #FDFBF7;
+  background-image: radial-gradient(#F59E0B 0.5px, transparent 0.5px), radial-gradient(#F59E0B 0.5px, #FDFBF7 0.5px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* Custom smooth scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
+}
+
+/* Document viewer zoom container */
+.doc-zoom-container {
+  touch-action: pan-x pan-y pinch-zoom;
+  transform-origin: top center;
+  transition: transform 0.15s ease-out;
+}
