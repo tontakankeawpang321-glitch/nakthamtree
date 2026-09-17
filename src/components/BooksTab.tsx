@@ -5,18 +5,13 @@ import {
   ExternalLink,
   Eye,
   Star,
-  RefreshCw,
-  Settings,
-  X,
-  Link2,
-  Check
+  RefreshCw
 } from 'lucide-react';
 import { Book } from '../types';
 import {
   getCachedBooks,
   fetchLiveBooksFromSheet,
-  getSavedSheetUrl,
-  saveSheetUrl
+  getSavedSheetUrl
 } from '../services/googleSheetService';
 import { toggleFavorite, isFavorite } from '../services/favoritesService';
 
@@ -34,12 +29,7 @@ export const BooksTab: React.FC<BooksTabProps> = ({ onOpenBook, onOpenHtmlBook }
   const [levelFilter, setLevelFilter] = useState<string>('ทั้งหมด');
   const [, setFavVersion] = useState<number>(0);
 
-  // Discreet settings dialog state (never shown on main page unless explicitly clicked)
-  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
-  const [tempSheetUrl, setTempSheetUrl] = useState<string>(() => getSavedSheetUrl());
-  const [settingsMessage, setSettingsMessage] = useState<string | null>(null);
-
-  // Background live sync with connected Google Sheet
+  // Background live sync directly with the connected Google Sheet
   const handleSyncSheet = useCallback(async (customUrl?: string) => {
     const targetUrl = customUrl !== undefined ? customUrl : getSavedSheetUrl();
     if (!targetUrl) return;
@@ -79,19 +69,6 @@ export const BooksTab: React.FC<BooksTabProps> = ({ onOpenBook, onOpenHtmlBook }
       window.removeEventListener('naktham_books_updated', handleBooksUpdate);
     };
   }, [handleSyncSheet]);
-
-  const handleSaveSettings = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!tempSheetUrl.trim()) return;
-
-    saveSheetUrl(tempSheetUrl.trim());
-    setSettingsMessage('บันทึกการเชื่อมต่อเรียบร้อยแล้ว');
-    handleSyncSheet(tempSheetUrl.trim());
-    setTimeout(() => {
-      setSettingsMessage(null);
-      setIsSettingsOpen(false);
-    }, 800);
-  };
 
   const levels = ['ทั้งหมด', 'นักธรรมตรี', 'นักธรรมโท', 'นักธรรมเอก', 'ทั่วไป'];
 
@@ -144,16 +121,6 @@ export const BooksTab: React.FC<BooksTabProps> = ({ onOpenBook, onOpenHtmlBook }
             title="รีเฟรชข้อมูลล่าสุดจากชีต"
           >
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
-          </button>
-          <button
-            onClick={() => {
-              setTempSheetUrl(getSavedSheetUrl());
-              setIsSettingsOpen(true);
-            }}
-            className="p-2 text-amber-800/50 hover:text-amber-950 hover:bg-amber-100/60 rounded-xl transition-colors active:scale-95"
-            title="ตั้งค่าการเชื่อมต่อชีต"
-          >
-            <Settings className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -383,69 +350,6 @@ export const BooksTab: React.FC<BooksTabProps> = ({ onOpenBook, onOpenHtmlBook }
           })
         )}
       </div>
-
-      {/* Discrete Settings Modal (Only opens when user clicks gear icon) */}
-      {isSettingsOpen && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-2xl max-w-md w-full p-5 shadow-xl border border-gray-200 flex flex-col gap-3">
-            <div className="flex items-center justify-between border-b pb-2.5 border-gray-100">
-              <div className="flex items-center gap-2">
-                <Link2 className="w-5 h-5 text-amber-800" />
-                <h3 className="font-maitree font-bold text-base text-gray-900">
-                  ตั้งค่า Google Sheet ที่เชื่อมต่อ
-                </h3>
-              </div>
-              <button
-                onClick={() => setIsSettingsOpen(false)}
-                className="p-1 text-gray-400 hover:text-black rounded-lg transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <form onSubmit={handleSaveSettings} className="flex flex-col gap-3">
-              <div>
-                <label className="text-xs font-semibold text-gray-700 mb-1 block">
-                  ลิงก์ Google Sheet:
-                </label>
-                <input
-                  type="text"
-                  value={tempSheetUrl}
-                  onChange={e => setTempSheetUrl(e.target.value)}
-                  placeholder="https://docs.google.com/spreadsheets/d/.../edit"
-                  className="w-full text-xs p-2.5 rounded-xl border border-gray-300 focus:border-amber-600 focus:outline-none"
-                />
-                <p className="text-[11px] text-gray-400 mt-1">
-                  รูปแบบคอลัมน์: category, title, description, url
-                </p>
-              </div>
-
-              {settingsMessage && (
-                <div className="p-2 bg-emerald-50 text-emerald-800 text-xs rounded-lg flex items-center gap-1.5">
-                  <Check className="w-4 h-4 text-emerald-600" />
-                  <span>{settingsMessage}</span>
-                </div>
-              )}
-
-              <div className="flex justify-end gap-2 pt-2 border-t border-gray-100">
-                <button
-                  type="button"
-                  onClick={() => setIsSettingsOpen(false)}
-                  className="px-3.5 py-1.5 rounded-xl text-xs text-gray-600 hover:bg-gray-100 transition-colors"
-                >
-                  ปิด
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-1.5 bg-amber-800 hover:bg-amber-900 text-white rounded-xl text-xs font-semibold active:scale-95 transition-all shadow-xs"
-                >
-                  บันทึกเชื่อมต่อตลอดไป
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
