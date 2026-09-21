@@ -144,7 +144,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           >
             <BookOpen className="w-5 h-5 text-amber-700" />
             <div className="text-left">
-              <div>คลังหนังสือ Google Drive</div>
+              <div>คลังหนังสือ</div>
               <div className="text-[11px] text-gray-500 font-sans font-normal">อ่าน PDF/DOCX พอดีจอ ซูมอิสระ</div>
             </div>
           </button>

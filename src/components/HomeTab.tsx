@@ -113,9 +113,9 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             {onSwitchToVideoView && (
               <button
                 onClick={onSwitchToVideoView}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-900/50 border border-amber-300/40 text-amber-200 text-xs font-semibold hover:bg-amber-900/70 active:scale-95 transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-amber-900 text-xs font-semibold shadow-xs hover:bg-amber-50 active:scale-95 transition-all"
               >
-                <Film className="w-3.5 h-3.5 text-amber-300" />
+                <Film className="w-3.5 h-3.5 text-amber-700" />
                 <span>ดูคลังวิดีโอ</span>
               </button>
             )}
@@ -124,13 +124,13 @@ export const HomeTab: React.FC<HomeTabProps> = ({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-amber-900 text-xs font-semibold shadow-xs hover:bg-amber-50 active:scale-95 transition-all"
             >
               <BookOpen className="w-3.5 h-3.5 text-amber-700" />
-              <span>คลังหนังสือ Google Drive</span>
+              <span>คลังหนังสือ</span>
             </button>
             <button
               onClick={() => onNavigateTab('proverbs')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-900/40 border border-white/20 text-white text-xs font-semibold hover:bg-amber-900/60 active:scale-95 transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-amber-900 text-xs font-semibold shadow-xs hover:bg-amber-50 active:scale-95 transition-all"
             >
-              <Quote className="w-3.5 h-3.5 text-amber-300" />
+              <Quote className="w-3.5 h-3.5 text-amber-700" />
               <span>พุทธศาสนสุภาษิต</span>
             </button>
           </div>

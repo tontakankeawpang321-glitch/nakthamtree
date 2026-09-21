@@ -19,7 +19,7 @@ import { DEFAULT_BOOKS, getCachedBooks } from './data/booksData';
 import { FavoriteItem } from './services/favoritesService';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<NavTab>('books');
+  const [currentTab, setCurrentTab] = useState<NavTab>('home');
   const [homeViewMode, setHomeViewMode] = useState<'courses' | 'videos'>('courses');
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);

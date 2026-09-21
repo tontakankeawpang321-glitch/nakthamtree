@@ -31,7 +31,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentTab, onSelectTab })
       id: 'books' as NavTab,
       label: 'หนังสือ',
       icon: BookOpen,
-      desc: 'คลัง Drive'
+      desc: 'คลังหนังสือ'
     }
   ];
 
