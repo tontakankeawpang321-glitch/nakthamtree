@@ -1,4 +1,4 @@
-export type NavTab = 'home' | 'community' | 'proverbs' | 'books';
+export type NavTab = 'home' | 'video' | 'community' | 'proverbs' | 'books';
 
 export interface Comment {
   id: string;
@@ -39,6 +39,17 @@ export interface Book {
   description?: string;
   pages?: number;
   contentHtml?: string;
+}
+
+export interface VideoItem {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  url: string;
+  youtubeId?: string;
+  thumbnailUrl?: string;
+  embedUrl?: string;
 }
 
 export interface ChatMessage {

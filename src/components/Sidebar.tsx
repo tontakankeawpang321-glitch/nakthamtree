@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Users, Quote, BookOpen, Bot, X, ExternalLink, ShieldCheck, Sparkles } from 'lucide-react';
+import { Home, Users, Quote, BookOpen, Bot, X, ExternalLink, ShieldCheck, Sparkles, Film } from 'lucide-react';
 import { NavTab } from '../types';
 
 interface SidebarProps {
@@ -74,6 +74,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="text-left">
               <div>หน้าแรก (บทเรียน)</div>
               <div className="text-[11px] text-gray-500 font-sans font-normal">หลักสูตร ตรี-โท-เอก และแบบทดสอบ</div>
+            </div>
+          </button>
+
+          <button
+            onClick={() => {
+              onSelectTab('video');
+              onClose();
+            }}
+            className={`flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-maitree text-sm font-semibold transition-all ${
+              currentTab === 'video'
+                ? 'bg-amber-100/80 text-amber-900 shadow-xs'
+                : 'text-gray-700 hover:bg-amber-50'
+            }`}
+          >
+            <Film className="w-5 h-5 text-amber-700" />
+            <div className="text-left">
+              <div>คลังวิดีโอบทเรียน</div>
+              <div className="text-[11px] text-gray-500 font-sans font-normal">วิดีโอบรรยาย เก็งข้อสอบ และเสียงอ่าน</div>
             </div>
           </button>
 

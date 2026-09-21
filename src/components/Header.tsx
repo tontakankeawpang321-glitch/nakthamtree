@@ -29,7 +29,9 @@ export const Header: React.FC<HeaderProps> = ({
   const getTabTitle = () => {
     switch (currentTab) {
       case 'home':
-        return 'บทเรียน & บทสรุปวิชา';
+        return 'บทเรียน & แบบทดสอบ';
+      case 'video':
+        return 'คลังวิดีโอบทเรียนธรรมะ';
       case 'community':
         return 'ชุมชนสนทนาธรรม';
       case 'proverbs':

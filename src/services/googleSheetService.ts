@@ -1,4 +1,5 @@
 import { Book } from '../types';
+import { CONNECTED_SHEET_BOOKS } from '../data/connectedSheetBooks';
 
 export const SHEET_STORAGE_KEY = 'naktham_google_sheet_url';
 export const BOOKS_CACHE_KEY = 'naktham_live_books_cache';
@@ -43,13 +44,14 @@ export function getCachedBooks(): Book[] {
     const cached = localStorage.getItem(BOOKS_CACHE_KEY);
     if (cached) {
       const parsed = JSON.parse(cached);
-      if (Array.isArray(parsed)) return parsed;
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
     }
   } catch {
     // Ignore
   }
-  return [];
+  return CONNECTED_SHEET_BOOKS;
 }
+
 
 export function setCachedBooks(books: Book[]): void {
   try {

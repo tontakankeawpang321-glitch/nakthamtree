@@ -1,17 +1,19 @@
 import React from 'react';
-import { ExternalLink, BookOpen, Quote, Sparkles, ChevronRight, FileText, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, BookOpen, Quote, Sparkles, ChevronRight, FileText, CheckCircle2, Film } from 'lucide-react';
 import { NavTab } from '../types';
 
 interface HomeTabProps {
   onNavigateTab: (tab: NavTab) => void;
   onOpenChat: () => void;
   onOpenHtmlBook: (bookId: 'naktham-tee' | 'naktham-tho' | 'naktham-ek') => void;
+  onSwitchToVideoView?: () => void;
 }
 
 export const HomeTab: React.FC<HomeTabProps> = ({
   onNavigateTab,
   onOpenChat,
-  onOpenHtmlBook
+  onOpenHtmlBook,
+  onSwitchToVideoView
 }) => {
   // Original 5 course & exam cards (preserved exactly as requested)
   const courseCards = [
@@ -108,6 +110,15 @@ export const HomeTab: React.FC<HomeTabProps> = ({
           </p>
 
           <div className="flex flex-wrap gap-2 mt-3.5">
+            {onSwitchToVideoView && (
+              <button
+                onClick={onSwitchToVideoView}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-900/50 border border-amber-300/40 text-amber-200 text-xs font-semibold hover:bg-amber-900/70 active:scale-95 transition-all"
+              >
+                <Film className="w-3.5 h-3.5 text-amber-300" />
+                <span>ดูคลังวิดีโอ</span>
+              </button>
+            )}
             <button
               onClick={() => onNavigateTab('books')}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-amber-900 text-xs font-semibold shadow-xs hover:bg-amber-50 active:scale-95 transition-all"

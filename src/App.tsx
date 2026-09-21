@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { BottomNav } from './components/BottomNav';
 import { HomeTab } from './components/HomeTab';
+import { VideoTab } from './components/VideoTab';
 import { CommunityTab } from './components/CommunityTab';
 import { ProverbsTab } from './components/ProverbsTab';
 import { BooksTab } from './components/BooksTab';
@@ -18,7 +19,8 @@ import { DEFAULT_BOOKS, getCachedBooks } from './data/booksData';
 import { FavoriteItem } from './services/favoritesService';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<NavTab>('home');
+  const [currentTab, setCurrentTab] = useState<NavTab>('books');
+  const [homeViewMode, setHomeViewMode] = useState<'courses' | 'videos'>('courses');
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [activeBook, setActiveBook] = useState<Book | null>(null);
@@ -108,7 +110,12 @@ export default function App() {
               setHtmlReaderInitialPage(0);
               setActiveHtmlBook(HTML_BOOKS[bookId] || null);
             }}
+            onSwitchToVideoView={() => setCurrentTab('video')}
           />
+        )}
+
+        {currentTab === 'video' && (
+          <VideoTab onSwitchToCourseView={() => setCurrentTab('home')} />
         )}
 
         {currentTab === 'community' && <CommunityTab />}
