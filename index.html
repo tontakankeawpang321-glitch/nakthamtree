@@ -2,6 +2,32 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var origFetch = window.fetch;
+          var activeFetch = typeof origFetch === 'function' ? origFetch.bind(window) : origFetch;
+          var descriptor = {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return activeFetch;
+            },
+            set: function(val) {
+              activeFetch = val;
+            }
+          };
+          try {
+            Object.defineProperty(window, 'fetch', descriptor);
+          } catch (e) {}
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', descriptor);
+            } catch (e2) {}
+          }
+        } catch (e3) {}
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <title>นักธรรม - ชุมชนธรรมะและคลังหนังสือ</title>
     <meta name="description" content="แอพพลิเคชันนักธรรม ชุมชนธรรมะ พุทธศาสนสุภาษิต คลังหนังสือธรรมะรองรับ PDF/DOCX และ AI ตอบปัญหาธรรมะ รองรับ Android WebView" />
@@ -19,8 +45,8 @@
 
     <!-- SweetAlert2 CSS & JS for notifications -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" crossorigin src="/nakthamtree/assets/index-DYIIKAKB.js"></script>
-    <link rel="stylesheet" crossorigin href="/nakthamtree/assets/index-BsyuvbwX.css">
+    <script type="module" crossorigin src="/nakthamtree/assets/index-Jjc-JgNL.js"></script>
+    <link rel="stylesheet" crossorigin href="/nakthamtree/assets/index-CJ9UpVmd.css">
   </head>
   <body class="bg-[#FDFBF7] text-gray-900 font-['Sarabun',sans-serif] antialiased selection:bg-amber-200">
     <div id="root"></div>
